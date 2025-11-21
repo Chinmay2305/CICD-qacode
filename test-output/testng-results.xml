@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="8" passed="5" failed="1" skipped="2">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-11-21T11:44:11 IST" name="Default suite" finished-at="2025-11-21T11:45:31 IST" duration-ms="79739">
+    <groups>
+    </groups>
+    <test started-at="2025-11-21T11:44:11 IST" name="Default test" finished-at="2025-11-21T11:45:31 IST" duration-ms="79739">
+      <class name="automation.tests.AssetsTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:11 IST" name="setup" finished-at="2025-11-21T11:44:17 IST" duration-ms="5492" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifylogin()[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:17 IST" name="verifylogin" finished-at="2025-11-21T11:44:20 IST" duration-ms="3557" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifylogin -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:20 IST" name="afterMethod" finished-at="2025-11-21T11:44:21 IST" duration-ms="532" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifylogin status=SUCCESS method=AssetsTest.verifylogin()[pri:0, instance:automation.tests.AssetsTest@7c83dc97] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="firstproject()[pri:1, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:21 IST" name="firstproject" finished-at="2025-11-21T11:44:26 IST" duration-ms="4885" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- firstproject -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:26 IST" name="afterMethod" finished-at="2025-11-21T11:44:26 IST" duration-ms="33" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=firstproject status=SUCCESS method=AssetsTest.firstproject()[pri:1, instance:automation.tests.AssetsTest@7c83dc97] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="verifyProjects()[pri:1, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:26 IST" name="verifyProjects" finished-at="2025-11-21T11:44:37 IST" depends-on-methods="automation.tests.ProjectsTest.verifylogin" duration-ms="11100" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyProjects -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:37 IST" name="afterMethod" finished-at="2025-11-21T11:44:37 IST" duration-ms="37" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyProjects status=SUCCESS method=ProjectsTest.verifyProjects()[pri:1, instance:automation.tests.AssetsTest@7c83dc97] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="firstProject()[pri:2, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:37 IST" name="firstProject" finished-at="2025-11-21T11:44:37 IST" depends-on-methods="automation.tests.ProjectsTest.verifyProjects" duration-ms="159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- firstProject -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:37 IST" name="afterMethod" finished-at="2025-11-21T11:44:37 IST" duration-ms="14" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=firstProject status=SUCCESS method=ProjectsTest.firstProject()[pri:2, instance:automation.tests.AssetsTest@7c83dc97] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="harvestlist()[pri:2, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:44:37 IST" name="harvestlist" finished-at="2025-11-21T11:45:24 IST" depends-on-methods="automation.tests.AssetsTest.firstproject" duration-ms="46845" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- harvestlist -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:45:24 IST" name="afterMethod" finished-at="2025-11-21T11:45:24 IST" duration-ms="30" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=harvestlist status=SUCCESS method=AssetsTest.harvestlist()[pri:2, instance:automation.tests.AssetsTest@7c83dc97] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="inventorycheck()[pri:3, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:45:24 IST" name="inventorycheck" finished-at="2025-11-21T11:45:30 IST" depends-on-methods="automation.tests.AssetsTest.harvestlist" duration-ms="6126" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <button class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-nq3bwm" tabindex="0" type="button">...</button> is not clickable at point (1473, 195). Other element would receive the click: <div class="MuiBox-root css-1uvgdx2">...</div>
+  (Session info: chrome=142.0.7444.163)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c3385192b45affda6bcdde15f928eadc, clickElement {id=f.D48ABF6D4DF7086BD957A0D365DD9E38.d.50ED046F275374C50DBB51E11F6049DB.e.633}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.163, chrome: {chromedriverVersion: 142.0.7444.175 (302067f14a4..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56927}, goog:processID: 10804, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56927/devtoo..., se:cdpVersion: 142.0.7444.163, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c3385192b45affda6bcdde15f928eadc)] -> xpath: (//div[contains(@class,'MuiBox-root')]/div/div/main/div/div)[2]/button]
+Session ID: c3385192b45affda6bcdde15f928eadc]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-nq3bwm" tabindex="0" type="button">...</button> is not clickable at point (1473, 195). Other element would receive the click: <div class="MuiBox-root css-1uvgdx2">...</div>
+  (Session info: chrome=142.0.7444.163)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c3385192b45affda6bcdde15f928eadc, clickElement {id=f.D48ABF6D4DF7086BD957A0D365DD9E38.d.50ED046F275374C50DBB51E11F6049DB.e.633}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.163, chrome: {chromedriverVersion: 142.0.7444.175 (302067f14a4..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56927}, goog:processID: 10804, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56927/devtoo..., se:cdpVersion: 142.0.7444.163, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c3385192b45affda6bcdde15f928eadc)] -> xpath: (//div[contains(@class,'MuiBox-root')]/div/div/main/div/div)[2]/button]
+Session ID: c3385192b45affda6bcdde15f928eadc
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+at automation.BaseMethods.Controls.waitforvisibility(Controls.java:638)
+at automation.PageObject.PageObject_Assets.inventorycheckpage(PageObject_Assets.java:396)
+at automation.tests.AssetsTest.inventorycheck(AssetsTest.java:75)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- inventorycheck -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:45:30 IST" name="afterMethod" finished-at="2025-11-21T11:45:30 IST" duration-ms="42" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=inventorycheck status=FAILURE method=AssetsTest.inventorycheck()[pri:3, instance:automation.tests.AssetsTest@7c83dc97] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="pricing()[pri:4, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:45:30 IST" name="pricing" finished-at="2025-11-21T11:45:30 IST" depends-on-methods="automation.tests.AssetsTest.inventorycheck" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method automation.tests.AssetsTest.pricing() on instance automation.tests.AssetsTest@7c83dc97 depends on not successfully finished methods 
+[automation.tests.AssetsTest.inventorycheck() on instance automation.tests.AssetsTest@7c83dc97]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method automation.tests.AssetsTest.pricing() on instance automation.tests.AssetsTest@7c83dc97 depends on not successfully finished methods 
+[automation.tests.AssetsTest.inventorycheck() on instance automation.tests.AssetsTest@7c83dc97]
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pricing -->
+        <test-method signature="cashflow()[pri:5, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:45:30 IST" name="cashflow" finished-at="2025-11-21T11:45:30 IST" depends-on-methods="automation.tests.AssetsTest.pricing" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method automation.tests.AssetsTest.cashflow() on instance automation.tests.AssetsTest@7c83dc97 depends on not successfully finished methods 
+[automation.tests.AssetsTest.pricing() on instance automation.tests.AssetsTest@7c83dc97]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method automation.tests.AssetsTest.cashflow() on instance automation.tests.AssetsTest@7c83dc97 depends on not successfully finished methods 
+[automation.tests.AssetsTest.pricing() on instance automation.tests.AssetsTest@7c83dc97]
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cashflow -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:automation.tests.AssetsTest@7c83dc97]" started-at="2025-11-21T11:45:30 IST" name="afterTest" finished-at="2025-11-21T11:45:31 IST" duration-ms="792" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- automation.tests.AssetsTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
