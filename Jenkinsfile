@@ -8,10 +8,9 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout Automation Code') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Chinmay2305/AerFin.git'
+                git branch: 'master', url: 'https://github.com/Chinmay2305/AerFin.git'
             }
         }
 
