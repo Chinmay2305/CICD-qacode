@@ -232,11 +232,13 @@ public class Controls
 		        ChromeOptions chromeOptions = new ChromeOptions();
 		        chromeOptions.setExperimentalOption("prefs", prefs);
 		        
-		        chromeOptions.addArguments("--start-maximized");
-		        chromeOptions.addArguments("--remote-allow-origins=*");
-		        chromeOptions.addArguments("--disable-gpu");
-		        chromeOptions.addArguments("--disable-dev-shm-usage");
 		        chromeOptions.addArguments("--no-sandbox");
+		        chromeOptions.addArguments("--disable-dev-shm-usage");
+		        chromeOptions.addArguments("--start-maximized");
+		        chromeOptions.addArguments("--window-size=1920,1080");
+		        chromeOptions.addArguments("--disable-gpu");
+		        chromeOptions.addArguments("--force-device-scale-factor=1");
+		        chromeOptions.addArguments("--disable-features=VizDisplayCompositor");
 		        
 		        boolean isJenkins = System.getenv("JENKINS_HOME") != null;
 
@@ -866,225 +868,19 @@ public class Controls
 		}*/
 		
 		//YEAR SELECTING IN CALENDAR UPDATED
-		public static void select_year_in_calendar(By locator, String year)
+		public static void pickYear(String year)
 		{
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
-		    Actions actions = new Actions(driver);
-
-		    // Helper: check if any of the known "year-grid" selectors are visible
-		    java.util.function.Predicate<Void> isYearGridVisible = (v) -> {
-		        try {
-		            // Common year-grid selectors for Material-UI pickers
-		            By[] yearSelectors = new By[] {
-		                By.xpath("//div[contains(@class,'MuiPickersYearSelection') or contains(@class,'MuiYearPicker-root')]"),
-		                By.xpath("//div[contains(@class,'MuiPickersYear-root')]"),
-		                By.xpath("//div[contains(@class,'MuiPickersBasePicker-container')]//button[text()='" + year + "']"),
-		                By.xpath("//button[normalize-space()='" + year + "']")
-		            };
-		            for (By s : yearSelectors) {
-		                java.util.List<WebElement> els = driver.findElements(s);
-		                if (!els.isEmpty()) {
-		                    for (WebElement e : els) {
-		                        if (e.isDisplayed()) return true;
-		                    }
-		                }
-		            }
-		        } catch (Throwable t) {
-		            // ignore
-		        }
-		        return false;
-		    };
-
-		    // Helper: wait short for year grid after an attempt
-		    java.util.function.Supplier<Boolean> waitForYearGridShort = () -> {
-		        try {
-		            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(6));
-		            shortWait.until(d -> isYearGridVisible.test(null));
-		            return true;
-		        } catch (Exception ex) {
-		            return false;
-		        }
-		    };
-
-		    try {
-		        // 1) Ensure the locator exists
-		        WebElement target = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-		        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", target);
-		        Thread.sleep(200); // small pause for rendering
-
-		        // 2) Try normal click
-		        try {
-		            target.click();
-		        } catch (Throwable t) {
-		            // ignore and try alternative clicks
-		        }
-
-		        // 3) If not opened, try JS click
-		        if (!waitForYearGridShort.get()) {
-		            try {
-		                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
-		            } catch (Throwable t) {
-		                // ignore
-		            }
-		        }
-
-		        // 4) If still not opened, try keyboard open (ENTER then SPACE)
-		        if (!waitForYearGridShort.get()) {
-		            try {
-		                target.sendKeys(Keys.ENTER);
-		                Thread.sleep(150);
-		                if (!waitForYearGridShort.get()) {
-		                    target.sendKeys(Keys.SPACE);
-		                }
-		            } catch (Throwable t) {
-		                // ignore
-		            }
-		        }
-
-		        // 5) If still not opened, try clicking a calendar icon sibling (common pattern)
-		        if (!waitForYearGridShort.get()) {
-		            try {
-		                // try several icon/button patterns relative to the input
-		                By[] iconCandidates = new By[] {
-		                    By.xpath("//button[contains(@aria-label,'open') or contains(@class,'CalendarIcon') or contains(@class,'openIcon')]"),
-		                    By.xpath("//input[contains(@class,'MuiInputBase-input')]/following::button[1]"),
-		                    By.xpath("//div[.//input][.//button]//button") // generic
-		                };
-		                for (By ic : iconCandidates) {
-		                    java.util.List<WebElement> icons = driver.findElements(ic);
-		                    if (!icons.isEmpty()) {
-		                        for (WebElement icon : icons) {
-		                            try {
-		                                if (icon.isDisplayed()) {
-		                                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", icon);
-		                                    try { icon.click(); } catch (Throwable ex) { ((JavascriptExecutor) driver).executeScript("arguments[0].click();", icon); }
-		                                    if (waitForYearGridShort.get()) break;
-		                                }
-		                            } catch (Throwable ignore) {}
-		                        }
-		                        if (waitForYearGridShort.get()) break;
-		                    }
-		                }
-		            } catch (Throwable t) {
-		                // ignore
-		            }
-		        }
-
-		        // 6) As last resort for stubborn UIs: Actions move + click
-		        if (!waitForYearGridShort.get()) {
-		            try {
-		                actions.moveToElement(target).pause(Duration.ofMillis(150)).click().perform();
-		            } catch (Throwable t) {
-		                // ignore
-		            }
-		        }
-
-		        // 7) If popup never appeared -> fail early with screenshot for debugging
-		        if (!waitForYearGridShort.get()) {
-		            takeScreenshot("calendar_popup_missing");
-		            throw new TimeoutException("Calendar popup did not appear after multiple open attempts.");
-		        }
-
-		        // At this point, calendar popup exists. Now ensure we're in Year view.
-		        // Try known header switchers to open year view
-		        By[] headerSelectors = new By[] {
-		            By.xpath("//button[contains(@class,'MuiPickersCalendarHeader-switchViewButton')]"),
-		            By.xpath("//button[contains(@aria-label,'switch view') or contains(@aria-label,'open year view')]"),
-		            By.xpath("//div[contains(@class,'MuiPickersCalendarHeader-root')]//button"),
-		            By.xpath("//button[contains(@class,'switchViewButton') or contains(@class,'switch-view')]")
-		        };
-
-		        boolean switchedToYear = false;
-		        for (By hs : headerSelectors) {
-		            try {
-		                java.util.List<WebElement> headers = driver.findElements(hs);
-		                for (WebElement h : headers) {
-		                    if (h.isDisplayed() && h.isEnabled()) {
-		                        try { h.click(); } catch (Throwable ex) { ((JavascriptExecutor) driver).executeScript("arguments[0].click();", h); }
-		                        // small wait
-		                        Thread.sleep(300);
-		                        if (isYearGridVisible.test(null)) {
-		                            switchedToYear = true;
-		                            break;
-		                        }
-		                    }
-		                }
-		            } catch (Throwable ignored) {}
-		            if (switchedToYear) break;
-		        }
-
-		        // In some pickers the header might be a span/div not a button. Try clicking the header text.
-		        if (!switchedToYear) {
-		            try {
-		                By headerText = By.xpath("//div[contains(@class,'MuiPickersToolbar') or contains(@class,'MuiDialogTitle')]/button | //div[contains(@class,'MuiPickersToolbar')]/div");
-		                java.util.List<WebElement> ht = driver.findElements(headerText);
-		                for (WebElement h : ht) {
-		                    if (h.isDisplayed()) {
-		                        try { h.click(); } catch (Throwable e) { ((JavascriptExecutor) driver).executeScript("arguments[0].click();", h); }
-		                        Thread.sleep(300);
-		                        if (isYearGridVisible.test(null)) { switchedToYear = true; break; }
-		                    }
-		                }
-		            } catch (Throwable ignore) {}
-		        }
-
-		        // If still not in year-view, perhaps the years are directly visible already (some versions show them)
-		        if (!isYearGridVisible.test(null) && !switchedToYear) {
-		            // keep going - we'll attempt to select the year anyway
-		        }
-
-		        // Now click the year button
-		        By[] yearButtonXPaths = new By[] {
-		            By.xpath("//div[contains(@class,'MuiPickersYearSelection') or contains(@class,'MuiYearPicker-root')]//button[normalize-space()='" + year + "']"),
-		            By.xpath("//button[normalize-space()='" + year + "']"),
-		            By.xpath("//div[contains(@role,'grid')]//button[normalize-space()='" + year + "']")
-		        };
-
-		        boolean clickedYear = false;
-		        for (By yxp : yearButtonXPaths) {
-		            try {
-		                WebElement ybtn = new WebDriverWait(driver, Duration.ofSeconds(6))
-		                        .until(ExpectedConditions.elementToBeClickable(yxp));
-		                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ybtn);
-		                try { ybtn.click(); } catch (Throwable ex) { ((JavascriptExecutor) driver).executeScript("arguments[0].click();", ybtn); }
-		                clickedYear = true;
-		                break;
-		            } catch (Throwable t) {
-		                // try next xpath
-		            }
-		        }
-
-		        if (!clickedYear) {
-		            takeScreenshot("calendar_year_select_failed");
-		            throw new NoSuchElementException("Unable to find clickable year button for year=" + year);
-		        }
-
-		        // Small pause to allow UI to update
-		        Thread.sleep(300);
-
-		    } catch (Exception e) {
-		        // Capture screenshot for debugging and rethrow to fail test with context
-		        try { takeScreenshot("select_year_error"); } catch (Throwable ignored) {}
-		        throw new RuntimeException("Failed selecting year in calendar: " + e.getMessage(), e);
-		    }
-		}
-		
-		private static void takeScreenshot(String name) {
-		    try {
-		        if (!(driver instanceof TakesScreenshot)) return;
-		        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-		        File destDir = new File(System.getProperty("user.dir") + File.separator + "Reports" + File.separator + "Screenshots");
-		        destDir.mkdirs();
-		        File dest = new File(destDir, name + "_" + timestamp + ".png");
-		        FileHandler.copy(src, dest);
-		        System.out.println("Screenshot saved: " + dest.getAbsolutePath());
-		    } catch (Throwable t) {
-		        System.out.println("Screenshot failed: " + t.getMessage());
-		    }
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+			// Open calendar using icon
+			WebElement calendarBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@aria-label,'Choose date')]")));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", calendarBtn);
+			
+			// Select year
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='" + year + "']"))).click();
+			
+			System.out.println("✔ Year selected: " + year);
 		}
 
-		
 		public static void select_date_in_calendar(By locator, String date) throws InterruptedException
 		{
 			// Open calendar
