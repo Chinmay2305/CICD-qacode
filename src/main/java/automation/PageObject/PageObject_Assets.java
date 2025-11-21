@@ -91,8 +91,8 @@ public class PageObject_Assets extends Controls
 		//After confirming labels and place holders, start adding the data
 		Controls.type(By.xpath(assetsprop.getProperty("msnesn_box")), assetsprop.getProperty("msnesn"));
 		
-		Controls.dynamicwait(By.xpath(assetsprop.getProperty("dom_box")));
-		Controls.select_year_in_calendar(By.xpath(assetsprop.getProperty("dom_box")),assetsprop.getProperty("dom"));
+		Controls.waitforvisibility(driver, By.xpath(assetsprop.getProperty("dom_box")), 10);
+	//	Controls.select_year_in_calendar(By.xpath(assetsprop.getProperty("dom_box")),assetsprop.getProperty("dom"));
 
 		String assetfamily, assettype;
 		if(assetsprop.getProperty("asset_type").equalsIgnoreCase("Airframe"))
