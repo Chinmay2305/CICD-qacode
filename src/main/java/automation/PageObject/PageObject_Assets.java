@@ -91,31 +91,7 @@ public class PageObject_Assets extends Controls
 		//After confirming labels and place holders, start adding the data
 		Controls.type(By.xpath(assetsprop.getProperty("msnesn_box")), assetsprop.getProperty("msnesn"));
 		
-		// Scroll & click the DOM field
-		WebElement domField = w.until(ExpectedConditions.presenceOfElementLocated(By.xpath(assetsprop.getProperty("dom_box"))));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", domField);
-		
-		// Try normal click first
-		try {
-		    domField.click();
-		    System.out.println("DOM field clicked normally!");
-		} catch (Exception e) {
-		    System.out.println("Normal click failed → Trying JS click");
-		    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", domField);
-		}
-		
-		// Send ENTER to force open calendar if click fails
-		domField.sendKeys(Keys.ENTER);
-
-		// Wait until popup truly becomes visible
-		WebElement calendarDialog = w.until(ExpectedConditions.visibilityOfElementLocated(
-		        By.xpath("//div[contains(@class,'MuiDialogContent-root')]")
-		));
-		
-		System.out.println("Calendar popup is visible now: " + calendarDialog.isDisplayed());
-
-		// Now select year
-		Controls.select_year_in_calendar(By.xpath(assetsprop.getProperty("dom_box")),assetsprop.getProperty("dom"));
+		Controls.pickYear(assetsprop.getProperty("dom"));
 
 		String assetfamily, assettype;
 		if(assetsprop.getProperty("asset_type").equalsIgnoreCase("Airframe"))
