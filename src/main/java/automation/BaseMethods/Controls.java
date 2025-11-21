@@ -860,15 +860,15 @@ public class Controls
 			return outputdate;
 		}
 		
-		/*public static void select_year_in_calendar(By locator, String year)
+		public static void select_year_in_calendar(By locator, String year)
 		{
 			Controls.clickElement(locator);
 			driver.switchTo().activeElement();
 			driver.findElement(By.xpath("//div[contains(@class,'MuiPickersYear-root')]/button[text()='"+year+"']")).click();
-		}*/
+		}
 		
 		//YEAR SELECTING IN CALENDAR UPDATED
-		public static void pickYear(String year)
+		/*public static void pickYear(String year)
 		{
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 			// Open calendar using icon
@@ -879,7 +879,7 @@ public class Controls
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='" + year + "']"))).click();
 			
 			System.out.println("✔ Year selected: " + year);
-		}
+		}*/
 
 		public static void select_date_in_calendar(By locator, String date) throws InterruptedException
 		{
