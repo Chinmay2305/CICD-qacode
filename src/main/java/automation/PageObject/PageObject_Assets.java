@@ -93,7 +93,7 @@ public class PageObject_Assets extends Controls
 		
 	//	Controls.waitforvisibility(driver, By.xpath(assetsprop.getProperty("dom_box")), 10);
 	//	Controls.select_year_in_calendar(By.xpath(assetsprop.getProperty("dom_box")),assetsprop.getProperty("dom"));
-		Controls.type(By.xpath(assetsprop.getProperty("dom_box_original")),assetsprop.getProperty("dom"));
+		Controls.editText(By.xpath(assetsprop.getProperty("dom_box_original")),assetsprop.getProperty("dom"));
 
 		String assetfamily, assettype;
 		if(assetsprop.getProperty("asset_type").equalsIgnoreCase("Airframe"))
