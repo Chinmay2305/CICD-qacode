@@ -3,6 +3,8 @@ package automation.PageObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,8 @@ import automation.BaseMethods.Controls;
 
 public class PageObject_Assets extends Controls
 {
+    private String generatedassetid;
+	
 	public PageObject_Assets(WebDriver driver)
 	{
 		this.driver=driver;
@@ -89,11 +93,11 @@ public class PageObject_Assets extends Controls
 		Controls.confirmplaceholders(By.xpath(assetsprop.getProperty("operating_region_box")), "Select Operating Region", "Operating Region");
 		
 		//After confirming labels and place holders, start adding the data
-		Controls.type(By.xpath(assetsprop.getProperty("msnesn_box")), assetsprop.getProperty("msnesn"));
+		generatedassetid = generateId(assetsprop.getProperty("asset_type"));
+		Controls.type(By.xpath(assetsprop.getProperty("msnesn_box")), generatedassetid);
 		
 	//	Controls.waitforvisibility(driver, By.xpath(assetsprop.getProperty("dom_box")), 10);
-	//	Controls.select_year_in_calendar(By.xpath(assetsprop.getProperty("dom_box")),assetsprop.getProperty("dom"));
-		Controls.editText(By.xpath(assetsprop.getProperty("dom_box_original")),assetsprop.getProperty("dom"));
+		Controls.select_year_in_calendar(By.xpath(assetsprop.getProperty("dom_box")),assetsprop.getProperty("dom"));
 
 		String assetfamily, assettype;
 		if(assetsprop.getProperty("asset_type").equalsIgnoreCase("Airframe"))
@@ -129,7 +133,7 @@ public class PageObject_Assets extends Controls
 		
 		if(assetsprop.getProperty("asset_type").equals("Airframe"))
 		{
-			Controls.confirmdata(By.xpath(assetsprop.getProperty("msnesn_table")), "MSN : "+assetsprop.getProperty("msnesn"), "MSN/ESN");
+			Controls.confirmdata(By.xpath(assetsprop.getProperty("msnesn_table")), "MSN : "+generatedassetid, "MSN/ESN");
 			Controls.confirmdata(By.xpath(assetsprop.getProperty("family_table2")), assetsprop.getProperty("family")+" / "+assetsprop.getProperty("type"), "Family/Type");
 			Controls.confirmdata(By.xpath(assetsprop.getProperty("dom_table")), assetsprop.getProperty("dom"), "Date of Manufacture");
 			Controls.confirmdata(By.xpath(assetsprop.getProperty("last_operator_table")), assetsprop.getProperty("last_operator"), "Last Operator");
@@ -426,6 +430,14 @@ public class PageObject_Assets extends Controls
 	}
 	
 	//HELPER METHODS
+	public static String generateId(String assetType)
+	{
+		// Determine prefix
+	    String prefix = assetType.equalsIgnoreCase("Engine") ? "ESN" : "MSN";
+	    String timestamp = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("ddMMHHmmss"));
+	    return prefix + timestamp;
+	}
+	
 	private void waitForProgressBarToDisappear() {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	    try {
