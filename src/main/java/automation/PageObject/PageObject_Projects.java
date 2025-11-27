@@ -14,10 +14,12 @@ import automation.BaseMethods.Controls;
 public class PageObject_Projects extends Controls
 {
 	private WebDriver driver;
+	private PageObject_Analytics pa;
 	
 	public PageObject_Projects(WebDriver driver)
 	{
 		this.driver=driver;
+		this.pa = new PageObject_Analytics(driver);
 	}
 	
 	public void openprojects() throws IOException, InterruptedException
@@ -60,6 +62,44 @@ public class PageObject_Projects extends Controls
 		int columnCount = columns.size();
 		Thread.sleep(5000);
 		Sort(columnCount, false);
+	}
+	
+	public int singlefilterforanalytics() throws InterruptedException
+	{
+		System.out.println("FILTER FROM ANALYTICS PART: "+pa.bidstatus);
+		
+		Controls.get(projectsprop.getProperty("projects_url"));
+		Thread.sleep(5000);
+		Controls.clickElement(By.xpath(projectsprop.getProperty("filter_btn")));
+		
+		//NOW FILTERING
+		String[] attributes = {"bidstatus"};
+		String[][] filterdatasets = {
+				{pa.bidstatus}
+		};
+		
+		String[] filterInputLocators = new String[attributes.length];
+		By[] tableColumnLocators = new By[attributes.length];
+		
+		for(int i=0;i<attributes.length;i++)
+		{
+			filterInputLocators[i] = projectsprop.getProperty("filter_"+attributes[i]);
+			tableColumnLocators[i] = By.xpath(projectsprop.getProperty("column_"+attributes[i]));
+		}
+				
+		applyVerifyMultipleFilters(
+			    By.xpath(projectsprop.getProperty("filter_btn")),
+			    filterInputLocators,
+			    filterdatasets,
+			    new boolean[] {false},	//for date fields - false for non-date fields & true for date fields
+			    By.xpath(projectsprop.getProperty("filter_apply")),
+			    tableColumnLocators,
+			    attributes
+			);
+		
+		WebElement rowCount = driver.findElement(By.xpath("(//main[contains(@class,'MuiBox-root')])[2]/div[2]/div/div[2]/div[3]/span"));
+		String countText = rowCount.getText().replace(",", "").trim();  // remove commas
+		return Integer.parseInt(countText);
 	}
 	
 	public void filterprojects() throws InterruptedException

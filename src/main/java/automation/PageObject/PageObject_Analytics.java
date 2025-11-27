@@ -25,10 +25,15 @@ import automation.BaseMethods.Controls;
 
 public class PageObject_Analytics extends Controls
 {
+	private WebDriver driver;
 	private Properties pa;
 	private By chartCanvasLocator = By.xpath("(//canvas[@data-zr-dom-id='zr_0'])[1]"); // Locator for the chart canvas
     private By tooltipLocator = By.xpath("//div[contains(@style, 'visibility: visible')]"); // Locator for visible tooltip
-	
+    //HAVE TO KEEP THESE FIELDS HERE ONLY BECAUSE THEY ARE ACCESSED IN PAGEOBJECT CLASSES ALSO
+    String vendorfield = "region";		//FOR VENDORS
+    String vendordata = "middle east";	//FOR VENDORS
+    String bidstatus = "closed";	//FOR PROJECTS
+    
 	public PageObject_Analytics(WebDriver driver)
 	{
 		this.driver = driver;
@@ -46,17 +51,39 @@ public class PageObject_Analytics extends Controls
         }
 	}
 	
-	public void homevendors() throws InterruptedException
+	public int homevendors_vendorsgraphs() throws Exception
 	{
 		driver.get(analyticsprop.getProperty("analytics_url"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(pa.getProperty("homevendors_link"))));
         Controls.clickElement(By.xpath(pa.getProperty("homevendors_link")));
         Thread.sleep(5000);
-        //hoverOverElementByBorderColor(driver, "rgb(54, 162, 161)");
-        Actions actions = new Actions(driver);
-	    actions.moveToElement(driver.findElement(By.cssSelector("body > div:nth-child(2) > div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > main:nth-child(2) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > canvas:nth-child(1)"))).perform();
-        Thread.sleep(7000);
+        int index;
         
+        if(vendorfield.equals("class"))
+        {
+        	index=1;
+        }
+        else
+        {
+        	index=2;
+        }
+                
+        int countfromPie = Controls.validatePieChartECharts2(index, vendordata);
+        System.out.println("Count recieved in Analytics: "+countfromPie);
+        return countfromPie;
+	}
+	
+	public int projectstatusgraph() throws Exception
+	{
+		driver.get(analyticsprop.getProperty("analytics_url"));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(pa.getProperty("projectstatus_link"))));
+		Controls.clickElement(By.xpath(pa.getProperty("projectstatus_link")));
+		Thread.sleep(5000);
+		
+		int countfromPie = Controls.validatePieChartECharts2(1, bidstatus);
+		System.out.println("Count recieved in Projects: "+countfromPie);
+		return countfromPie;
 	}
 }
