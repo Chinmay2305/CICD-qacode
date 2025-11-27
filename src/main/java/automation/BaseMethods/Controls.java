@@ -25,11 +25,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -555,23 +559,117 @@ public class Controls
 		}
 		
 	//PIE-GRAPH VERIFICATION
-		public void hoverOverElementByBorderColor(WebDriver driver, String borderColor) throws InterruptedException
+		//PERFECTLY DONE - WITHOUT NUMBER IN INPUT
+		public static int validatePieChartECharts2(int chartIndex, String targetClass) throws Exception
 		{
-			String xpathSelector = String.format("//div[contains(@style, \"border-color: %s\")]", borderColor);
-		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathSelector)));
-		    if (element.isDisplayed())
+		    Actions actions = new Actions(driver);
+
+		    // Dynamic canvas locator based on chart index
+		    WebElement canvas = driver.findElement(By.xpath("(//div[contains(@class,'echarts-for-react')])[" + chartIndex + "]//canvas"));
+
+		    // Scroll into view
+		    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior:'instant', block:'center'});",canvas);
+
+		    // Tooltip specific to this chart only
+		    By tooltipLocator = By.xpath("(//div[contains(@class,'echarts-for-react')])[" + chartIndex + "]");
+
+		    int width = canvas.getSize().width;
+		    int height = canvas.getSize().height;
+
+		    int centerX = width / 2;
+		    int centerY = height / 2;
+		    int radius = (int)(Math.min(width, height) * 0.35);
+
+		    // Sweep through all slices
+		    for (int angle = 0; angle < 360; angle += 5)
 		    {
-		     //   Actions actions = new Actions(driver);
-		      //  actions.moveToElement(element).perform();
-		    	String script = "var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true, view: window}); arguments[0].dispatchEvent(event);";
-		    	((JavascriptExecutor) driver).executeScript(script, element);
-		        Thread.sleep(2000);
+		        double rad = Math.toRadians(angle);
+		        int x = centerX + (int)(radius * Math.cos(rad));
+		        int y = centerY + (int)(radius * Math.sin(rad));
+
+		        actions.moveToElement(canvas, x - centerX, y - centerY).perform();
+		        Thread.sleep(70);
+
+		        List<WebElement> tips = driver.findElements(tooltipLocator);
+		        if (tips.isEmpty()) continue;
+
+		        WebElement tip = tips.get(0);
+		        String tooltipText = tip.getText().trim();
+
+		        // Match case-insensitive
+		        if (tooltipText.toLowerCase().contains(targetClass.toLowerCase()))
+		        {
+		            // Extract number from tooltip
+		            String num = tooltipText.replaceAll("[^0-9]", " ").trim().split(" ")[0];
+		            int actualCount = Integer.parseInt(num);
+
+		            System.out.println("Tooltip → " + tooltipText);
+		            System.out.println("Extracted Count → " + actualCount);
+
+		            // YOU WILL VERIFY THIS VALUE WITH TABLE
+		            return actualCount;
+		        }
 		    }
-		    else
-		    {
-		        throw new RuntimeException("Element with border-color " + borderColor + " not found or not visible.");
+
+		    throw new RuntimeException("Slice not found for class: " + targetClass);
+		}
+		
+		
+		//PERFECT WORKING METHOD
+		public static void validatePieChartECharts(int chartIndex,String targetClass,int expectedCount) throws Exception
+		{
+		    Actions actions = new Actions(driver);
+
+		    // Dynamic canvas locator based on chart index
+		    WebElement canvas = driver.findElement(By.xpath("(//div[contains(@class,'echarts-for-react')])[" + chartIndex + "]//canvas"));
+		    
+		    ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior:'instant', block:'center'});",canvas);
+
+		    // Tooltip specific to this chart only
+		    By tooltipLocator = By.xpath("(//div[contains(@class,'echarts-for-react')])[" + chartIndex + "]");
+
+		    // Canvas dimensions
+		    int width = canvas.getSize().width;
+		    int height = canvas.getSize().height;
+
+		    int centerX = width / 2;
+		    int centerY = height / 2;
+		    int radius = (int) (Math.min(width, height) * 0.35);
+
+		    for (int angle = 0; angle < 360; angle += 5) {
+
+		        double rad = Math.toRadians(angle);
+		        int x = centerX + (int) (radius * Math.cos(rad));
+		        int y = centerY + (int) (radius * Math.sin(rad));
+
+		        actions.moveToElement(canvas, x - centerX, y - centerY).perform();
+		        Thread.sleep(70);
+
+		        List<WebElement> tipList = driver.findElements(tooltipLocator);
+		        if (tipList.isEmpty()) continue;
+
+		        WebElement tip = tipList.get(0);
+		        String tooltipText = tip.getText().trim();
+
+		        // Tooltip matched slice
+		        if (tooltipText.toLowerCase().contains(targetClass)) {
+
+		            // Extract numbers
+		            String num = tooltipText.replaceAll("[^0-9]", " ").trim().split(" ")[0];
+		            int actualCount = Integer.parseInt(num);
+
+		            System.out.println("Tooltip → " + tooltipText);  // NEW OUTPUT
+
+		            if (actualCount == expectedCount) {
+		                System.out.println("PASS → Slice matched for: " + targetClass);
+		            } else {
+		                System.out.println("FAIL → Expected: " + expectedCount + ", Found: " + actualCount);
+		            }
+		            return;
+		        }
 		    }
+
+		    throw new RuntimeException("Slice not found for class: " + targetClass);
 		}
 		
 	//DICTIONARY CHECKING SECTION
@@ -777,6 +875,7 @@ public class Controls
 	        }
 	        return tableData;
 	    }
+
 		
 		public static void compareWebAndExcelRowByRow(List<List<String>> excelData, List<List<String>> gridData)
 		{
@@ -860,27 +959,14 @@ public class Controls
 			return outputdate;
 		}
 		
-		public static void select_year_in_calendar(By locator, String year)
+		public static void select_year_in_calendar(By locator, String year) throws InterruptedException
 		{
 			Controls.clickElement(locator);
 			driver.switchTo().activeElement();
+			Thread.sleep(5000);
 			driver.findElement(By.xpath("//div[contains(@class,'MuiPickersYear-root')]/button[text()='"+year+"']")).click();
 		}
 		
-		//YEAR SELECTING IN CALENDAR UPDATED
-		/*public static void pickYear(String year)
-		{
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-			// Open calendar using icon
-			WebElement calendarBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@aria-label,'Choose date')]")));
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", calendarBtn);
-			
-			// Select year
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='" + year + "']"))).click();
-			
-			System.out.println("✔ Year selected: " + year);
-		}*/
-
 		public static void select_date_in_calendar(By locator, String date) throws InterruptedException
 		{
 			// Open calendar
