@@ -48,18 +48,18 @@ public class PageObject_Vendors extends Controls
 	
 	public int singlefilterforanalytics() throws InterruptedException
 	{
-		System.out.println("FILTER FROM ANALYTICS PART: "+pa.vendordata);
+		System.out.println("FILTER ON VENDOR REGION FROM ANALYTICS PART: "+pa.vendorregion);
 		
 		Controls.get(vendorsprop.getProperty("vendors_url"));
 		Thread.sleep(5000);
 		Controls.clickElement(By.xpath(vendorsprop.getProperty("filter_btn")));
 		
-		String[] fields = {"class","region"};
+		String[] fields = {"region"};
 		
 		//NOW FILTERING
-		String[] attributes = {pa.vendorfield};
+		String[] attributes = {"region"};
 		String[][] filterdatasets = {
-				{pa.vendordata}
+				{pa.vendorregion}
 		};
 		
 		String[] filterInputLocators = new String[attributes.length];

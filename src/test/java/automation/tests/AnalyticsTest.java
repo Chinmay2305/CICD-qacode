@@ -32,17 +32,17 @@ public class AnalyticsTest extends BaseTest
 		login();
 	}
 
-/*	@Test(priority = 1, dependsOnMethods = {"verifylogin"})
+	@Test(priority = 1, dependsOnMethods = {"verifylogin"})
 	public void vendorgraphverification() throws Exception
 	{
-		int piecount = pa.homevendors_vendorsgraphs();
+		int piecount = pa.homevendors_vendorsregiongraph();
 		int tablecount = pv.singlefilterforanalytics();
 		if (piecount == tablecount) {
 	        System.out.println("✔ PASS — Both counts match!");
 	    } else {
 	        System.out.println("✘ FAIL — Mismatch! Pie: " + piecount + " | Table: " + tablecount);
 	    }
-	}*/
+	}
 	
 	@Test(priority = 2, dependsOnMethods = {"verifylogin"})
 	public void projectstatusgraphverification() throws Exception

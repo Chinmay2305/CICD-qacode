@@ -30,8 +30,7 @@ public class PageObject_Analytics extends Controls
 	private By chartCanvasLocator = By.xpath("(//canvas[@data-zr-dom-id='zr_0'])[1]"); // Locator for the chart canvas
     private By tooltipLocator = By.xpath("//div[contains(@style, 'visibility: visible')]"); // Locator for visible tooltip
     //HAVE TO KEEP THESE FIELDS HERE ONLY BECAUSE THEY ARE ACCESSED IN PAGEOBJECT CLASSES ALSO
-    String vendorfield = "region";		//FOR VENDORS
-    String vendordata = "middle east";	//FOR VENDORS
+    String vendorregion = "South america";		//FOR VENDORS
     String bidstatus = "closed";	//FOR PROJECTS
     
 	public PageObject_Analytics(WebDriver driver)
@@ -51,25 +50,15 @@ public class PageObject_Analytics extends Controls
         }
 	}
 	
-	public int homevendors_vendorsgraphs() throws Exception
+	public int homevendors_vendorsregiongraph() throws Exception
 	{
 		driver.get(analyticsprop.getProperty("analytics_url"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(pa.getProperty("homevendors_link"))));
         Controls.clickElement(By.xpath(pa.getProperty("homevendors_link")));
         Thread.sleep(5000);
-        int index;
-        
-        if(vendorfield.equals("class"))
-        {
-        	index=1;
-        }
-        else
-        {
-        	index=2;
-        }
                 
-        int countfromPie = Controls.validatePieChartECharts2(index, vendordata);
+        int countfromPie = Controls.validatePieChartECharts2(2, vendorregion);
         System.out.println("Count recieved in Analytics: "+countfromPie);
         return countfromPie;
 	}
