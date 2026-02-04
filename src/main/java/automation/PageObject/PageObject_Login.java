@@ -27,12 +27,8 @@ public class PageObject_Login extends Controls
 	
 	public void login(String username, String password) throws IOException, InterruptedException
 	{
-		WebElement user = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("login_user_path.xpath"))));
-		user.clear();
-		user.sendKeys(username);
-		WebElement pass = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("login_pwd_path.xpath"))));
-		pass.clear();
-		pass.sendKeys(password);
-		Controls.clickElement(By.xpath(loginprop.getProperty("login_btn.xpath")));
+		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
+		
+		System.out.println(texttest.getText().toString());
 	}
 }

@@ -3,18 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="automation.tests.AssetsTest">
+      <class name="automation.tests.LoginTest">
         <methods>
-          <include name="afterMethod"/>
+          <include name="verifylogin"/>
           <include name="setup"/>
           <include name="afterTest"/>
-          <include name="pricing"/>
-          <include name="harvestlist"/>
-          <include name="cashflow"/>
-          <include name="firstproject"/>
-          <include name="inventorycheck"/>
+          <include name="afterMethod"/>
         </methods>
-      </class> <!-- automation.tests.AssetsTest -->
+      </class> <!-- automation.tests.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
