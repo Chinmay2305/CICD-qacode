@@ -1,1 +1,8 @@
-.metadata/".metadata/" 
+target/
+bin/
+.classpath
+.project
+.settings/
+*.log
+*.backup
+Reports/
