@@ -76,10 +76,9 @@ public class Controls
 	public static Logger Logger = null;
 	public static Properties loginprop = new Properties();
 	public static Properties setupprop = new Properties();
-	public static Properties usersprop = new Properties();
 	public static Properties configprop = new Properties();
 	
-	public static FileInputStream flogin, fsetup, fusers, fconfig;
+	public static FileInputStream flogin, fsetup, fconfig;
 	
 	//INITAL SETUP
 		@BeforeTest
@@ -93,8 +92,6 @@ public class Controls
 					loginprop.load(flogin);
 					fsetup = new FileInputStream(System.getProperty("user.dir") + "//Resources//setup.properties");
 					setupprop.load(fsetup);
-					fusers = new FileInputStream(System.getProperty("user.dir") + "//Resources//users.properties");
-					usersprop.load(fusers);
 					fconfig = new FileInputStream(System.getProperty("user.dir") + "//Resources//config.properties");
 					configprop.load(fconfig);
 				}

@@ -2,8 +2,6 @@ package automation.PageObject;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import automation.BaseMethods.Controls;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 
 public class PageObject_Login extends Controls
 {
@@ -25,7 +20,7 @@ public class PageObject_Login extends Controls
 		this.pl = pl;
 	}
 	
-	public void login(String username, String password) throws IOException, InterruptedException
+	public void login() throws IOException, InterruptedException
 	{
 		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
 		
