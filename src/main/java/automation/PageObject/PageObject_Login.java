@@ -22,8 +22,18 @@ public class PageObject_Login extends Controls
 	
 	public void login() throws IOException, InterruptedException
 	{
-		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
+		String expectedtext = "A place to share your knowledge.";
 		
+		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
 		System.out.println(texttest.getText().toString());
+		
+		if(expectedtext.equals(texttest.getText().toString()))
+		{
+			System.out.println("ITS THE SAME");
+		}
+		else
+		{
+			System.out.println("ITS DIFFERENT");
+		}
 	}
 }
