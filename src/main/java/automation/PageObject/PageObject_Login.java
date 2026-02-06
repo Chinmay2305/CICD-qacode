@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.openqa.selenium.By;
 import automation.BaseMethods.Controls;
@@ -28,15 +29,14 @@ public class PageObject_Login extends Controls
 		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
 		System.out.println(texttest.getText().toString());
 		
-		if(expectedtext.equals(texttest.getText().toString()))
-		{
-			System.out.println("ITS THE SAME");
-			Reporter.log("Reporter log visible in Jenkins - SAME", true);
-		}
-		else
-		{
-			System.out.println("ITS DIFFERENT");
-			Reporter.log("Reporter log visible in Jenkins - DIFFERENT", true);
-		}
+		Assert.assertEquals(texttest,expectedtext,"TEXT CHANGED! Expected: [" + expectedtext + "] but Found: [" + texttest + "]");
+		
+		/*
+		 * if(expectedtext.equals(texttest.getText().toString())) {
+		 * System.out.println("ITS THE SAME");
+		 * Reporter.log("Reporter log visible in Jenkins - SAME", true); } else {
+		 * System.out.println("ITS DIFFERENT");
+		 * Reporter.log("Reporter log visible in Jenkins - DIFFERENT", true); }
+		 */
 	}
 }
