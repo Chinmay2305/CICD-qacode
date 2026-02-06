@@ -16,7 +16,10 @@ pipeline {
 
         stage('Build & Run Tests') {
             steps {
-                bat 'mvn clean test -DskipTests=false'
+				echo "===== STARTING TEST EXECUTION ====="
+                //bat 'mvn clean test -DskipTests=false'
+                bat 'mvn clean test -q -DskipTests=false'
+                echo "===== TEST EXECUTION FINISHED ====="
             }
         }
 

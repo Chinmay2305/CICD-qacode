@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[Reporter log visible in Jenkins - SAME]]>
+    </line>
   </reporter-output>
-  <suite started-at="2026-02-05T17:34:58 IST" name="Default suite" finished-at="2026-02-05T17:35:16 IST" duration-ms="18027">
+  <suite started-at="2026-02-06T09:40:56 IST" name="Default suite" finished-at="2026-02-06T09:41:04 IST" duration-ms="8539">
     <groups>
     </groups>
-    <test started-at="2026-02-05T17:34:58 IST" name="Default test" finished-at="2026-02-05T17:35:16 IST" duration-ms="18027">
+    <test started-at="2026-02-06T09:40:56 IST" name="Default test" finished-at="2026-02-06T09:41:04 IST" duration-ms="8539">
       <class name="automation.tests.LoginTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-05T17:34:58 IST" name="setup" finished-at="2026-02-05T17:35:14 IST" duration-ms="16640" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-06T09:40:56 IST" name="setup" finished-at="2026-02-06T09:41:03 IST" duration-ms="6974" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifylogin()[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-05T17:35:14 IST" name="verifylogin" finished-at="2026-02-05T17:35:14 IST" duration-ms="146" status="PASS">
+        <test-method signature="verifylogin()[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-06T09:41:03 IST" name="verifylogin" finished-at="2026-02-06T09:41:03 IST" duration-ms="230" status="PASS">
           <reporter-output>
+            <line>
+              <![CDATA[Reporter log visible in Jenkins - SAME]]>
+            </line>
           </reporter-output>
         </test-method> <!-- verifylogin -->
-        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-05T17:35:14 IST" name="afterMethod" finished-at="2026-02-05T17:35:15 IST" duration-ms="509" status="PASS">
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-06T09:41:03 IST" name="afterMethod" finished-at="2026-02-06T09:41:04 IST" duration-ms="848" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifylogin status=SUCCESS method=LoginTest.verifylogin()[pri:0, instance:automation.tests.LoginTest@76c3e77a] output={null}]]]>
+                <![CDATA[[TestResult name=verifylogin status=SUCCESS method=LoginTest.verifylogin()[pri:0, instance:automation.tests.LoginTest@76c3e77a] output=Reporter log visible in Jenkins - SAME]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-05T17:35:15 IST" name="afterTest" finished-at="2026-02-05T17:35:16 IST" duration-ms="680" status="PASS">
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:automation.tests.LoginTest@76c3e77a]" started-at="2026-02-06T09:41:04 IST" name="afterTest" finished-at="2026-02-06T09:41:04 IST" duration-ms="405" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
