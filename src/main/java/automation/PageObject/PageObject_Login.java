@@ -29,7 +29,7 @@ public class PageObject_Login extends Controls
 		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
 		System.out.println(texttest.getText().toString());
 		
-		Assert.assertEquals(texttest,expectedtext,"TEXT CHANGED! Expected: [" + expectedtext + "] but Found: [" + texttest + "]");
+		Assert.assertEquals(texttest.getText().toString(),expectedtext,"TEXT CHANGED! Expected: [" + expectedtext + "] but Found: [" + texttest.getText().toString() + "]");
 		
 		/*
 		 * if(expectedtext.equals(texttest.getText().toString())) {
