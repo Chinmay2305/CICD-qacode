@@ -30,7 +30,7 @@ public class BaseTest {
         Controls.startUP();
         driver = Controls.driver;
         reports = ReportsOriginal.getInstance();
-        pl = new PageObject_Login(driver, Controls.loginprop);
+        pl = new PageObject_Login(driver, Controls.homeprop);
     }
 
     public void login() throws IOException, InterruptedException
@@ -41,7 +41,7 @@ public class BaseTest {
             pl.login();
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            WebElement success = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Controls.loginprop.getProperty("text"))));
+            WebElement success = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Controls.homeprop.getProperty("text"))));
             Assert.assertNotNull(success, "Login failed.");
             reports.log(com.aventstack.extentreports.Status.PASS, "Successful login");
         }

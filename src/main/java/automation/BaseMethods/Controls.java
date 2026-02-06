@@ -74,11 +74,11 @@ public class Controls
 {
 	public static WebDriver driver;
 	public static Logger Logger = null;
-	public static Properties loginprop = new Properties();
+	public static Properties homeprop = new Properties();
 	public static Properties setupprop = new Properties();
 	public static Properties configprop = new Properties();
 	
-	public static FileInputStream flogin, fsetup, fconfig;
+	public static FileInputStream fhome, fsetup, fconfig;
 	
 	//INITAL SETUP
 		@BeforeTest
@@ -88,8 +88,8 @@ public class Controls
 			{
 				try
 				{
-					flogin = new FileInputStream(System.getProperty("user.dir") + "//Resources//login.properties");
-					loginprop.load(flogin);
+					fhome = new FileInputStream(System.getProperty("user.dir") + "//Resources//home.properties");
+					homeprop.load(fhome);
 					fsetup = new FileInputStream(System.getProperty("user.dir") + "//Resources//setup.properties");
 					setupprop.load(fsetup);
 					fconfig = new FileInputStream(System.getProperty("user.dir") + "//Resources//config.properties");
@@ -208,16 +208,16 @@ public class Controls
 		    Controls.wait(2000);
 		    driver.manage().window().maximize();
 
-		    if(loginprop.getProperty("Environment").equalsIgnoreCase("Production"))
+		    if(homeprop.getProperty("Environment").equalsIgnoreCase("Production"))
 		        driver.get(configprop.getProperty("ProductionURL"));
 
-		    if(loginprop.getProperty("Environment").equalsIgnoreCase("dev"))
+		    if(homeprop.getProperty("Environment").equalsIgnoreCase("dev"))
 		        driver.get(configprop.getProperty("devurl"));
 
-		    if(loginprop.getProperty("Environment").equalsIgnoreCase("QA"))
+		    if(homeprop.getProperty("Environment").equalsIgnoreCase("QA"))
 		        driver.get(configprop.getProperty("QAURL"));
 		    
-		    if(loginprop.getProperty("Environment").equalsIgnoreCase("deployed"))
+		    if(homeprop.getProperty("Environment").equalsIgnoreCase("deployed"))
 		        driver.get(configprop.getProperty("urldeployed"));
 
 		    driver.manage().deleteAllCookies();

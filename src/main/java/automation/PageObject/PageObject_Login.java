@@ -28,7 +28,7 @@ public class PageObject_Login extends Controls
 
 	    WebElement texttest = w.until(
 	        ExpectedConditions.visibilityOfElementLocated(
-	            By.xpath(loginprop.getProperty("text"))
+	            By.xpath(homeprop.getProperty("text"))
 	        )
 	    );
 
