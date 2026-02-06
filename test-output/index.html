@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1415998778\testng-customsuite.xml</span>
+                    <span>C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1071988933\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -129,13 +129,13 @@
                   <a name="verifylogin">
                   </a> <!-- verifylogin -->
                   <span class="method-name">verifylogin</span>
-                  <div class="stack-trace">java.lang.AssertionError: TEXT CHANGED! Expected: [A place to share your knowledge.] but Found: [A testing place to share your knowledge.] expected [A place to share your knowledge.] but found [A testing place to share your knowledge.]
+                  <div class="stack-trace">java.lang.AssertionError: TEXT CHANGED! expected [A place to share your knowledge.] but found [A testing place to share your knowledge.]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
 	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
 	at org.testng.Assert.assertEquals(Assert.java:132)
 	at org.testng.Assert.assertEquals(Assert.java:656)
-	at automation.PageObject.PageObject_Login.login(PageObject_Login.java:34)
+	at automation.PageObject.PageObject_Login.login(PageObject_Login.java:39)
 	at automation.tests.BaseTest.login(BaseTest.java:41)
 	at automation.tests.LoginTest.verifylogin(LoginTest.java:13)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -173,7 +173,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1415998778\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1071988933\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -226,12 +226,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'verifylogin')
 data.setCell(0, 2, 'automation.tests.LoginTest')
-data.setCell(0, 3, 175);
+data.setCell(0, 3, 143);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 175 ms</span>
+              <span class="suite-total-time">Total running time: 143 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -242,6 +242,14 @@ return data;
             <span class="header-content">Reporter output for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">verifylogin</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">Current URL: https://cicd-tutorial-blue.vercel.app/</span>
+                <span class="reporter-method-output">Actual text: A testing place to share your knowledge.</span>
+                <span class="reporter-method-output">Expected text: A place to share your knowledge.</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
@@ -266,15 +274,15 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">verifylogin</span>
-                <span class="method-start">5748 ms</span>
+                <span class="method-start">5655 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod([TestResult name=verifylogin status=FAILURE method=LoginTest.verifylogin()[pri:0, instance:automatio...)</span>
-                <span class="method-start">5930 ms</span>
+                <span class="method-start">5807 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-test after">
                 <span class="method-name">afterTest</span>
-                <span class="method-start">6726 ms</span>
+                <span class="method-start">6583 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

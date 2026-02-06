@@ -22,23 +22,24 @@ public class PageObject_Login extends Controls
 		this.pl = pl;
 	}
 	
-	public void login() throws IOException, InterruptedException
-	{
-		System.out.println(driver.getCurrentUrl());
-		String expectedtext = "A place to share your knowledge.";
-		
-		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
-		System.out.println(texttest.getText().toString());
-		System.out.println(expectedtext);
-		
-		Assert.assertEquals(texttest.getText().toString(),expectedtext,"TEXT CHANGED! Expected: [" + expectedtext + "] but Found: [" + texttest.getText().toString() + "]");
-		
-		/*
-		 * if(expectedtext.equals(texttest.getText().toString())) {
-		 * System.out.println("ITS THE SAME");
-		 * Reporter.log("Reporter log visible in Jenkins - SAME", true); } else {
-		 * System.out.println("ITS DIFFERENT");
-		 * Reporter.log("Reporter log visible in Jenkins - DIFFERENT", true); }
-		 */
+	public void login() throws IOException, InterruptedException {
+
+	    String expectedtext = "A place to share your knowledge.";
+
+	    WebElement texttest = w.until(
+	        ExpectedConditions.visibilityOfElementLocated(
+	            By.xpath(loginprop.getProperty("text"))
+	        )
+	    );
+
+	    Reporter.log("Current URL: " + driver.getCurrentUrl(), true);
+	    Reporter.log("Actual text: " + texttest.getText(), true);
+	    Reporter.log("Expected text: " + expectedtext, true);
+
+	    Assert.assertEquals(
+	        texttest.getText(),
+	        expectedtext,
+	        "TEXT CHANGED!"
+	    );
 	}
 }

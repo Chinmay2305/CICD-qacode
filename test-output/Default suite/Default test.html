@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Feb 06 11:45:40 IST 2026</td>
+<td>Started on:</td><td>Fri Feb 06 11:48:41 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>7 seconds (7327 ms)</td>
+<tr><td>Total time:</td><td>7 seconds (7075 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,14 +76,23 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='automation.tests.LoginTest.verifylogin()'><b>verifylogin</b><br>Test class: automation.tests.LoginTest</td>
-<td><div><pre>java.lang.AssertionError: TEXT CHANGED! Expected: [A place to share your knowledge.] but Found: [A testing place to share your knowledge.] expected [A place to share your knowledge.] but found [A testing place to share your knowledge.]
+<td title='automation.tests.LoginTest.verifylogin()'><b>verifylogin</b><br>Test class: automation.tests.LoginTest<br/>
+<a href="#Output-1576499395" onClick='toggleBox("Output-1576499395", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1576499395" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1576499395">
+Current URL: https://cicd-tutorial-blue.vercel.app/<br/>
+Actual text: A testing place to share your knowledge.<br/>
+Expected text: A place to share your knowledge.<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: TEXT CHANGED! expected [A place to share your knowledge.] but found [A testing place to share your knowledge.]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
 	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
 	at org.testng.Assert.assertEquals(Assert.java:132)
 	at org.testng.Assert.assertEquals(Assert.java:656)
-	at automation.PageObject.PageObject_Login.login(PageObject_Login.java:34)
+	at automation.PageObject.PageObject_Login.login(PageObject_Login.java:39)
 	at automation.tests.BaseTest.login(BaseTest.java:41)
 	at automation.tests.LoginTest.verifylogin(LoginTest.java:13)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -112,14 +121,14 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace794476802", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace794476802'><pre>java.lang.AssertionError: TEXT CHANGED! Expected: [A place to share your knowledge.] but Found: [A testing place to share your knowledge.] expected [A place to share your knowledge.] but found [A testing place to share your knowledge.]
+</pre></div><a href='#' onClick='toggleBox("stack-trace1576499395", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1576499395'><pre>java.lang.AssertionError: TEXT CHANGED! expected [A place to share your knowledge.] but found [A testing place to share your knowledge.]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
 	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
 	at org.testng.Assert.assertEquals(Assert.java:132)
 	at org.testng.Assert.assertEquals(Assert.java:656)
-	at automation.PageObject.PageObject_Login.login(PageObject_Login.java:34)
+	at automation.PageObject.PageObject_Login.login(PageObject_Login.java:39)
 	at automation.tests.BaseTest.login(BaseTest.java:41)
 	at automation.tests.LoginTest.verifylogin(LoginTest.java:13)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
