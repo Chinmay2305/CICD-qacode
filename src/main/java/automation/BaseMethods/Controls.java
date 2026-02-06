@@ -216,6 +216,9 @@ public class Controls
 
 		    if(loginprop.getProperty("Environment").equalsIgnoreCase("QA"))
 		        driver.get(configprop.getProperty("QAURL"));
+		    
+		    if(loginprop.getProperty("Environment").equalsIgnoreCase("deployed"))
+		        driver.get(configprop.getProperty("urldeployed"));
 
 		    driver.manage().deleteAllCookies();
 		    driver.navigate().refresh();
