@@ -24,10 +24,12 @@ public class PageObject_Login extends Controls
 	
 	public void login() throws IOException, InterruptedException
 	{
+		System.out.println(driver.getCurrentUrl());
 		String expectedtext = "A place to share your knowledge.";
 		
 		WebElement texttest = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginprop.getProperty("text"))));
 		System.out.println(texttest.getText().toString());
+		System.out.println(expectedtext);
 		
 		Assert.assertEquals(texttest.getText().toString(),expectedtext,"TEXT CHANGED! Expected: [" + expectedtext + "] but Found: [" + texttest.getText().toString() + "]");
 		
